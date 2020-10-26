@@ -30,10 +30,10 @@ let bus = {
   height: 65,
   speed: 3
 }
-let bus []
+let buses []
 bus[2] = {
-x: canvas.width
-y: ground -bus.height
+x: canvas.width,
+y: ground - bus.height
 }
 
 let runner = {
@@ -61,7 +61,7 @@ backgroundImage.src = "images/background.png"
 car.image.src = "images/car.png"
 runner.image.src = "images/runner_ani.gif"
 collision.image.src = "images/collision.png"
-bus.src = "images/bus.png"
+bus.image.src = "images/bus.png"
 
 // Sound sources
 jump.sound.src = "sounds/jump_08.mp3"
@@ -84,6 +84,26 @@ function draw(){
   // Cars
   for(let i = 0; i < cars.length; i++){
 
+  // buses
+  for(let i= 0; i< bus.length; i++) {
+    buses[i].x = buses[i].x - bus.speed
+    if( buses[i].x < 180 && bus.length === 1){
+      buses.push({
+        x: canvas.width + (Math.random() * 100) + 80,
+        y: ground - bus.height
+      })
+      if( buses[i].x < 180 && buses.length === 1){
+        buses.push({
+          x: canvas.width + (Math.random() * 100) + 80,
+          y: ground - bus.height
+          if(buses[i].x < bus.width){
+            setTimeout( function() {
+              buses.shift()
+            }, 0);
+          }
+          context.drawImage(car.image, cars[i].x, cars[i].y, car.width, car.height)
+        })
+      }
     // Move car
     cars[i].x =  cars[i].x - car.speed
 
