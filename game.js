@@ -3,8 +3,8 @@ const canvas = document.getElementById("canvas")
 const context = canvas.getContext("2d")
 
 const backgroundImage = new Image()
-const carImage = new Image()
-const busImage new image ()
+const redCarImage = new Image()
+const busImage = new Image()
 
 const ground = 430
 const gravity = 4
@@ -12,7 +12,6 @@ let distance = 0
 let username
 
 let car = {
-  image: new Image(),
   width: 60,
   height: 60,
   speed: 3
@@ -20,20 +19,9 @@ let car = {
 
 let cars = []
 cars[0] = {
+  image: redCarImage,
   x: canvas.width,
   y: ground - car.height
-}
-
-let bus = {
-  image: new Image(),
-  width: 70,
-  height: 65,
-  speed: 4
-}
-let buses []
-bus[2] = {
-x: canvas.width,
-y: ground - bus.height
 }
 
 let runner = {
@@ -58,10 +46,10 @@ const collision = {
 
 // Image sources
 backgroundImage.src = "images/background.png"
-car.image.src = "images/car.png"
+busImage.src = "images/bus.png"
+redCarImage.src = "images/car.png"
 runner.image.src = "images/runner_ani.gif"
 collision.image.src = "images/collision.png"
-bus.image.src = "images/bus.png"
 
 // Sound sources
 jump.sound.src = "sounds/jump_08.mp3"
@@ -84,32 +72,14 @@ function draw(){
   // Cars
   for(let i = 0; i < cars.length; i++){
 
-  // buses
-  for(let i= 0; i< bus.length; i++) {
-    buses[i].x = buses[i].x - bus.speed
-    if( buses[i].x < 180 && bus.length === 1){
-      buses.push({
-        x: canvas.width + (Math.random() * 100) + 80,
-        y: ground - bus.height
-      })
-      if( buses[i].x < 180 && buses.length === 1){
-        buses.push({
-          x: canvas.width + (Math.random() * 100) + 80,
-          y: ground - bus.height
-          if(buses[i].x < bus.width){
-            setTimeout( function() {
-              buses.shift()
-            }, 0);
-          }
-          context.drawImage(car.image, cars[i].x, cars[i].y, car.width, car.height)
-        })
-      }
     // Move car
-    cars[i].x =  cars[i].x - car.speed
+    cars[i].x = cars[i].x - car.speed
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
+      const ranImg = [busImage, busImage, redCarImage][Math.floor(Math.random() * 3)];
       cars.push({
+        image: ranImg,
         x: canvas.width + (Math.random() * 100) + 80,
         y: ground - car.height
       })
@@ -121,7 +91,7 @@ function draw(){
         cars.shift()
       }, 0);
     }
-    context.drawImage(car.image, cars[i].x, cars[i].y, car.width, car.height)
+    context.drawImage(cars[i].image, cars[i].x, cars[i].y, car.width, car.height)
 
     // Collision
     if (runner.coordinates.x + runner.width/2 >= cars[i].x
