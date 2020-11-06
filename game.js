@@ -26,9 +26,9 @@ cars[0] = {
 
 let bus = {
   image: new Image(),
-  width: 75,
+  width: 70,
   height: 65,
-  speed: 4,
+  speed: 4
 }
 let buses []
 bus[2] = {
