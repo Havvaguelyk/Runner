@@ -13,12 +13,12 @@ let username
 
 let car = {
   width: 60,
-  height: 60,
-  speed: 3
+  height: 60
 }
 
 let cars = []
 cars[0] = {
+  speed: 3,
   image: redCarImage,
   x: canvas.width,
   y: ground - car.height
@@ -73,12 +73,14 @@ function draw(){
   for(let i = 0; i < cars.length; i++){
 
     // Move car
-    cars[i].x = cars[i].x - car.speed
+    cars[i].x = cars[i].x - cars[i].speed
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
       const ranImg = [busImage, busImage, redCarImage][Math.floor(Math.random() * 3)];
+      const ranSpeed = 3;
       cars.push({
+        speed: ranSpeed,
         image: ranImg,
         x: canvas.width + (Math.random() * 100) + 80,
         y: ground - car.height
