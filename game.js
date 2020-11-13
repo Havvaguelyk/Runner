@@ -5,6 +5,7 @@ const context = canvas.getContext("2d")
 const backgroundImage = new Image()
 const redCarImage = new Image()
 const busImage = new Image()
+const taxiImage = new Image()
 
 const ground = 430
 const gravity = 4
@@ -48,6 +49,7 @@ const collision = {
 backgroundImage.src = "images/background.png"
 busImage.src = "images/bus.png"
 redCarImage.src = "images/car.png"
+taxiImage.src = "images/taxi.png"
 runner.image.src = "images/runner_ani.gif"
 collision.image.src = "images/collision.png"
 
@@ -77,8 +79,13 @@ function draw(){
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
-      const ranImg = [busImage, busImage, redCarImage][Math.floor(Math.random() * 3)];
-      const ranSpeed = 3;
+      const ranImg = [busImage, busImage, redCarImage, taxiImage][Math.floor(Math.random() * 4)];
+if (ranImg === "redCarImage") {
+
+  const ranSpeed = 10;
+}
+
+      const ranSpeed = 2;
       cars.push({
         speed: ranSpeed,
         image: ranImg,
