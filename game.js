@@ -17,10 +17,15 @@ let car = {
   height: 60
 }
 
+const bus = {
+  img: busImage,
+  speed: 3
+}
+
 let cars = []
 cars[0] = {
-  speed: 3,
-  image: redCarImage,
+  speed: bus.speed,
+  image: bus.img,
   x: canvas.width,
   y: ground - car.height
 }
@@ -79,16 +84,10 @@ function draw(){
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
-      const ranImg = [busImage, busImage, redCarImage, taxiImage][Math.floor(Math.random() * 4)];
-if (ranImg === "redCarImage") {
-
-  const ranSpeed = 10;
-}
-
-      const ranSpeed = 2;
+      const ranCar = [bus, bus, bus, bus][Math.floor(Math.random() * 4)];
       cars.push({
-        speed: ranSpeed,
-        image: ranImg,
+        speed: ranCar.speed,
+        image: ranCar.img,
         x: canvas.width + (Math.random() * 100) + 80,
         y: ground - car.height
       })
