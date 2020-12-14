@@ -19,7 +19,12 @@ let car = {
 
 const bus = {
   img: busImage,
-  speed: 3
+  speed: 3.4
+}
+
+const taxi = {
+  img: taxiImage,
+  speed: 4
 }
 
 let cars = []
@@ -84,17 +89,17 @@ function draw(){
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
-      const ranCar = [bus, bus, bus, bus][Math.floor(Math.random() * 4)];
+      const ranCar = [bus, bus, taxi, taxi][Math.floor(Math.random() * 4)];
       cars.push({
         speed: ranCar.speed,
         image: ranCar.img,
-        x: canvas.width + (Math.random() * 100) + 80,
+        x: canvas.width + (Math.random() * 60) + 160,
         y: ground - car.height
       })
     }
 
     // Delete car when it is out of the screen
-    if(cars[i].x < -car.width){
+    if(cars[i].x < -car.width){ 
       setTimeout( function() {
         cars.shift()
       }, 0);
