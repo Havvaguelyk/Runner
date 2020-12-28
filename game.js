@@ -146,9 +146,6 @@ function draw(){
   }
   // Ufo sound effect beim fliegen
 
-  if(ufo[i].x < 180 && cars.length === 1) {
-    ufo_flying.sound.play()
-  }
 
   // Animate jump
   if (jump.state === 'up') {
