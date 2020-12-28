@@ -6,6 +6,8 @@ const backgroundImage = new Image()
 const redCarImage = new Image()
 const busImage = new Image()
 const taxiImage = new Image()
+const ufoImage = new Image()
+const horseImage = new Image()
 
 const ground = 430
 const gravity = 4
@@ -17,14 +19,31 @@ let car = {
   height: 60
 }
 
+let horse = {
+  img: horseImage,
+  width: 80,
+  speed: 2.8
+
+}
+
+let ufo = {
+  img: ufoImage,
+  speed: 4.5
+}
+
 const bus = {
   img: busImage,
-  speed: 3.4
+  speed: 3.3
+}
+
+const redCar = {
+  img: redCarImage,
+  speed: 3.8
 }
 
 const taxi = {
   img: taxiImage,
-  speed: 4
+  speed: 3.5
 }
 
 let cars = []
@@ -53,6 +72,12 @@ let jump = {
 const collision = {
   image: new Image(),
   sound: new Audio()
+
+}
+
+const ufo_flying = {
+  image: new Image(),
+  sound: new Audio()
 }
 
 // Image sources
@@ -60,12 +85,15 @@ backgroundImage.src = "images/background.png"
 busImage.src = "images/bus.png"
 redCarImage.src = "images/car.png"
 taxiImage.src = "images/taxi.png"
+ufoImage.src = "images/ufo.png"
+horseImage.src = "images/horse.png"
 runner.image.src = "images/runner_ani.gif"
 collision.image.src = "images/collision.png"
 
 // Sound sources
 jump.sound.src = "sounds/jump_08.mp3"
 collision.sound.src = "sounds/qubodup-crash.mp3"
+ufo_flying.sound.src = "sounds/ufo_sound.mp3"
 
 // Jump functionality
 function jumpUp(){
@@ -89,7 +117,7 @@ function draw(){
 
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
-      const ranCar = [bus, bus, taxi, taxi][Math.floor(Math.random() * 4)];
+      const ranCar = [bus, redCar, taxi, ufo, horse][Math.floor(Math.random() * 5)];
       cars.push({
         speed: ranCar.speed,
         image: ranCar.img,
@@ -99,7 +127,7 @@ function draw(){
     }
 
     // Delete car when it is out of the screen
-    if(cars[i].x < -car.width){ 
+    if(cars[i].x < -car.width){
       setTimeout( function() {
         cars.shift()
       }, 0);
@@ -115,6 +143,11 @@ function draw(){
         collision.sound.play()
     }
     distance += 0.05
+  }
+  // Ufo sound effect beim fliegen
+
+  if(ufo[i].x < 180 && cars.length === 1) {
+    ufo_flying.sound.play()
   }
 
   // Animate jump
