@@ -23,7 +23,6 @@ let horse = {
   img: horseImage,
   width: 80,
   speed: 2.8
-
 }
 
 let ufo = {
@@ -118,6 +117,9 @@ function draw(){
     // Create new car
     if( cars[i].x < 180 && cars.length === 1){
       const ranCar = [bus, redCar, taxi, ufo, horse][Math.floor(Math.random() * 5)];
+      if (ranCar === ufo) {
+        ufo_flying.sound.play()
+      }
       cars.push({
         speed: ranCar.speed,
         image: ranCar.img,
@@ -143,11 +145,6 @@ function draw(){
         collision.sound.play()
     }
     distance += 0.05
-  }
-  // Ufo sound effect beim fliegen
-
-  if(ufo[i].x < 180 && cars.length === 1) {
-    ufo_flying.sound.play()
   }
 
   // Animate jump
