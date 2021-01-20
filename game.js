@@ -145,6 +145,7 @@ function draw(){
         collision.sound.play()
     }
     distance += 0.05
+    if distance +50 window.alert("congrats! you have reached Level 1!");
   }
 
   // Animate jump
