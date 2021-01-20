@@ -14,6 +14,7 @@ const gravity = 4
 let distance = 0
 let highscore = 0
 let username
+let message = ''
 
 let car = {
   width: 60,
@@ -144,10 +145,14 @@ function draw(){
         context.drawImage(collision.image, cars[i].x, cars[i].y, car.width, car.height)
         distance = 0
         collision.sound.play()
+        message = ''
     }
     distance += 0.05
     if (distance > highscore) {
       highscore = Math.floor(distance)
+      if (distance > 25) {
+        message = 'You reached a new highscore!'
+      }
     }
   }
 
@@ -171,6 +176,8 @@ function draw(){
   context.font = "20px helvetica"
   context.fillText(`${username}: ${Math.floor(distance)}m`, 20, 40)
   context.fillText(`Highscore: ${highscore}`, 220, 40)
+  context.fillText(`${message}`, 40, 160)
+
 
   requestAnimationFrame(draw)
 }
