@@ -12,6 +12,7 @@ const horseImage = new Image()
 const ground = 430
 const gravity = 4
 let distance = 0
+let highscore = 0
 let username
 
 let car = {
@@ -145,6 +146,9 @@ function draw(){
         collision.sound.play()
     }
     distance += 0.05
+    if (distance > highscore) {
+      highscore = Math.floor(distance)
+    }
   }
 
   // Animate jump
@@ -166,6 +170,7 @@ function draw(){
   context.fillStyle = "#fff"
   context.font = "20px helvetica"
   context.fillText(`${username}: ${Math.floor(distance)}m`, 20, 40)
+  context.fillText(`Highscore: ${highscore}`, 220, 40)
 
   requestAnimationFrame(draw)
 }
