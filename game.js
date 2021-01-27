@@ -13,6 +13,7 @@ const ground = 430
 const gravity = 4
 let distance = 0
 let highscore = 0
+let backgroundImageWidth = canvas.width
 let username
 let message = ''
 
@@ -104,11 +105,21 @@ function jumpUp(){
   }
 }
 
+
 canvas.addEventListener("click", jumpUp)
 
 // Draw function
 function draw(){
-  context.drawImage(backgroundImage, 0, 0)
+
+  // Background animation
+  context.drawImage(backgroundImage, backgroundImageWidth, 0)
+  context.drawImage(backgroundImage, backgroundImageWidth - canvas.width, 0)
+
+  backgroundImageWidth -= 1
+
+  if (backgroundImageWidth == 0) {
+    backgroundImageWidth = canvas.width
+  }
 
   // Cars
   for(let i = 0; i < cars.length; i++){
@@ -177,7 +188,6 @@ function draw(){
   context.fillText(`${username}: ${Math.floor(distance)}m`, 20, 40)
   context.fillText(`Highscore: ${highscore}`, 220, 40)
   context.fillText(`${message}`, 40, 160)
-
 
   requestAnimationFrame(draw)
 }
