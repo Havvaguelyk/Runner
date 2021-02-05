@@ -3,6 +3,8 @@ const canvas = document.getElementById("canvas")
 const context = canvas.getContext("2d")
 
 const backgroundImage = new Image()
+const backgroundImage2 = new Image ()
+const backgroundImage3 = new Image ()
 const redCarImage = new Image()
 const busImage = new Image()
 const taxiImage = new Image()
@@ -84,6 +86,8 @@ const ufo_flying = {
 
 // Image sources
 backgroundImage.src = "images/background.png"
+backgroundImage2.src = "images/backgroundImage2.png"
+backgroundImage3.src = "images/backgroundImage3.png"
 busImage.src = "images/bus.png"
 redCarImage.src = "images/car.png"
 taxiImage.src = "images/taxi.png"
@@ -184,7 +188,7 @@ function draw(){
   context.drawImage(runner.image, runner.coordinates.x, runner.coordinates.y, runner.width, runner.height)
 
   context.fillStyle = "#fff"
-  context.font = "20px helvetica"
+  context.font = '20px Times New Roman'
   context.fillText(`${username}: ${Math.floor(distance)}m`, 20, 40)
   context.fillText(`Highscore: ${highscore}`, 220, 40)
   context.fillText(`${message}`, 40, 160)
