@@ -86,8 +86,8 @@ const ufo_flying = {
 
 // Image sources
 backgroundImage.src = "images/background.png"
-backgroundImage2.src = "images/backgroundImage2.png"
-backgroundImage3.src = "images/backgroundImage3.png"
+backgroundImage2.src = "images/background2.png"
+backgroundImage3.src = "images/background3.png"
 busImage.src = "images/bus.png"
 redCarImage.src = "images/car.png"
 taxiImage.src = "images/taxi.png"
